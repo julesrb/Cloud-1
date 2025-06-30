@@ -1,0 +1,32 @@
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./certs:/etc/letsencrypt  # For TLS certs
+    depends_on:
+      - wordpress
+      - phpmyadmin
+
+  wordpress:
+    image: wordpress:latest
+    expose:
+      - "80"  # Expose to Nginx (not publicly)
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    expose:
+      - "80"
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: yourpassword
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
