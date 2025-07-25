@@ -1,0 +1,12 @@
+my_ec2_hosts:
+  hosts:
+    instance1:
+      ansible_host: 3.120.174.122
+    instance2:
+      ansible_host: 18.184.113.135
+    instance3:
+      ansible_host: 18.196.190.184
+  vars:
+    ansible_user: ubuntu
+    ansible_ssh_private_key_file: ./cloud-1-jubernar.pem
+    ansible_ssh_common_args: "-o StrictHostKeyChecking=no"
