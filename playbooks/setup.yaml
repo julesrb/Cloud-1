@@ -1,6 +1,6 @@
 - name: Setup Docker and Docker Compose
   hosts: all
-  become: true
+  become: true  # become root
 
   tasks:
     - name: Install required packages

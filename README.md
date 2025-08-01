@@ -7,7 +7,7 @@ Automate deployment (for example on AWS EC2) via Ansible and its Inventory
 
 - one AWS account
 - one AWS IAM account with AWS Access key and relevant EC2 permissions
-- one EC2 .pem keypair
+- one EC2 keypair with `400` permissions on the private .pem key (else Ansible scolds you about it)
 
 # Story
 AWS as a cloud provider lets you deploy your product. In fact clouds have become the default way of deployment. AWS lets you host something in a VM with a public IPv4 assigned (default port 80/443).

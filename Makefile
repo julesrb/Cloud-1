@@ -6,7 +6,7 @@ ANSIBLE_PLAYBOOK=$(VENV)/bin/ansible-playbook
 ANSIBLE=$(VENV)/bin/ansible
 PLAYBOOK=$(ANSIBLE_PLAYBOOK) main.yaml -i $(INVENTORY)
 
-all: init aws_sg aws_new_ec2 aws_mount_ebs setup deploy
+all: init aws_sg aws_new_ec2 aws_mount_ebs setup deploy certbot
 
 init:
 	test -d $(VENV) || python3 -m venv $(VENV)
@@ -34,6 +34,14 @@ deploy:
 
 clean:
 	$(PLAYBOOK) --tags clean
+
+certbot:
+	@read -p "Have you updated Route 53 to point to instance1 before continuing? (y/N): " confirm; \
+	if [ "$$confirm" = "y" ] || [ "$$confirm" = "Y" ]; then \
+		$(PLAYBOOK) --tags certbot; \
+	else \
+		echo "❌ Please update Route 53 DNS first, then run again."; \
+	fi
 
 ping:
 	$(ANSIBLE) my_ec2_hosts -m ping -i $(INVENTORY)

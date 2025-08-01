@@ -21,3 +21,7 @@
 - name: Mount EBS
   import_playbook: ./playbooks/AWS_mount_ebs.yaml
   tags: aws_mount_ebs
+
+- name: Certbot
+  import_playbook: ./playbooks/certbot.yaml
+  tags: certbot

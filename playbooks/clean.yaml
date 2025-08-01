@@ -1,5 +1,6 @@
 - name: Clean and Remove all docker
   hosts: my_ec2_hosts
+  become: true # Become root 
   tasks:
 
     - name: Stop all running Docker containers

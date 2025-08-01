@@ -1,6 +1,6 @@
 - name: Deploy app
   hosts: my_ec2_hosts
-  become: true
+  become: true  # become root
   tasks:
 
     - name: Create the mariadb path
